@@ -1,0 +1,16 @@
+/* header.css */
+
+
+/* style header Bereich */
+header {
+    background-color: var(--bgcolor);
+    text-align: center;
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid var(--bordercolor);
+}
+header img {
+    height: 180%;
+    object-fit: contain;
+    margin-top: -30px;
+}

@@ -1,0 +1,23 @@
+/* impressum.css */
+
+/* Style für den Impressum Bereich */
+
+main {
+    max-width: 800px;
+    padding: 20px;
+    background-color: var(--bgcolor);
+    color: var(--textcolor);
+    border: 1px solid var(--bordercolor);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+h1, h2, h3 {
+    margin-bottom: 10px;
+}
+a {
+    color: var(--highlightcolor);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

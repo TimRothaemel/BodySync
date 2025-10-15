@@ -1,0 +1,39 @@
+/* footer.css */
+
+footer {
+    flex-shrink: 0;  
+    background-color: var(--bgcolor);
+    text-align: center;
+    padding: 12px;
+    color: var(--textcolor);
+    font-size: 18px;
+}
+footer a {
+  color: var(--textcolor);
+  text-decoration: none;
+  margin: 0 12px;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+.linksection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  footer {
+    flex-direction: column;
+    padding: 12px;
+    height: auto;
+  }
+
+  footer a {
+    font-size: 14px;
+  }
+}
