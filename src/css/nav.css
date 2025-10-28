@@ -1,0 +1,21 @@
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: var(--bgcolor);
+  text-align: center;
+  padding: 12px 0;
+  color: var(--textcolor);
+  font-size: 18px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; 
+  margin-bottom: 90px;
+}
+nav a img{
+    height: 30px;
+}
