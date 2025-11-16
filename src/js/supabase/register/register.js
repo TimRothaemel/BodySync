@@ -1,39 +1,56 @@
-console.log("Register script loaded");
+console.log("Register script loaded")
 
 import supabase from '../supabaseClient.js'
 
-let newUserEmail 
-let newUserPassword 
-let newUserFullName 
-let newUserDayOfBirth
+export async function completeRegistration(newUserEmail, newUserPassword, newUserFullName, newUserDayOfBirth) {
+  try {
+    // 1. Benutzer registrieren
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+      email: newUserEmail,
+      password: newUserPassword,
+      options: {
+        data: {
+          full_name: newUserFullName,
+          day_of_birth: newUserDayOfBirth
+        }
+      }
+    })
 
-export async function signUpUser(newUserEmailInput, newUserPasswordInput, newUserFullNameInput, newUserDayOfBirthInput) {
-  const { data, error } = await supabase.auth.signUp({
-  email: newUserEmail,
-  password: newUserPassword,
-    data: { 
-        role: 'user', 
-        full_name: newUserFullName,
-        subscription_plan: 'free',
-        day_of_birth: newUserDayOfBirth
-    }  
-  
-})
-    if (error) {   
-        console.error('Error signing up:', error.message)
-    } else {
-        console.log('User signed up successfully:')
+    if (authError) throw authError
+
+    console.log('User registered successfully:', authData.user)
+    
+    // 2. Profil erstellen (ohne Anmeldung)
+    // Wenn Email-Verifikation aktiv ist, wird der User erst nach Verifikation eingeloggt
+    if (authData.user) {
+      const formattedDate = newUserDayOfBirth ? new Date(newUserDayOfBirth).toISOString().split('T')[0] : null
+      
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .insert([
+          {
+            user_id: authData.user.id,
+            email: newUserEmail,
+            role: 'user',
+            full_name: newUserFullName,
+            day_of_birth: formattedDate,
+            subscription_plan: 'free'
+          }
+        ])
+        .select()
+
+      if (profileError) {
+        console.error('Profile creation error:', profileError)
+        // Wir werfen diesen Fehler nicht, da der Benutzer bereits in auth erstellt wurde
+      } else {
+        console.log('Profile created successfully:', profileData)
+      }
     }
-}
-export async function insertUserData(){
-    .from('profiles')
-    .insert([
-      { id: user.id, 
-        email: newUserEmail,
-        role: 'user',
-        full_name: newUserFullName, 
-        day_of_birth: newUserDayOfBirth,
-        subscription_plan: 'free'
-    }
-    ])
+
+    return authData
+    
+  } catch (error) {
+    console.error('Complete registration failed:', error)
+    throw error
+  }
 }
