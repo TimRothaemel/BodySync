@@ -1,6 +1,6 @@
 console.log("Supabase client initialized");
 
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js';
 
 const supabase = createClient(
   "https://rptmuyzeiupavmuscrqs.supabase.co",
