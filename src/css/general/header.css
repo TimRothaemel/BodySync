@@ -3,11 +3,10 @@
 
 /* style header Bereich */
 header {
-    background-color: var(--bgcolor);
+    background-color: var(--secondbgcolor);
     text-align: center;
     height: 80px;
     width: 100%;
-    border-bottom: 1px solid var(--bordercolor);
 }
 header a{
     height: 180%;

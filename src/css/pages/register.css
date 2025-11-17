@@ -7,10 +7,51 @@
 }
 
 #back-button {
-  margin-top: 10px;
   background-color: #6c757d;
 }
 
 #back-button:hover {
   background-color: #5a6268;
 }
+
+.register-wrapper {
+  max-width: 400px;
+  margin: 12px;
+  padding: 12px;
+  background-color: var(--secondbgcolor);
+  border-radius: 8px;
+}
+.register-wrapper h1 {
+  text-align: center;
+  margin-bottom: 20px;
+} 
+.register-wrapper p {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--textcolor);
+}
+.register-wrapper form {
+  display: flex;
+  flex-direction: column;
+} 
+.register-wrapper input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.register-wrapper button {
+  padding: 10px;
+  background-color: var(--highlightcolor);
+  color: white;
+  border: none;
+  border-radius: 4px;     
+  font-size: 16px;
+  cursor: pointer;
+}
+.register-wrapper button:hover {
+
+
+  background-color: #005bb5;
+} 

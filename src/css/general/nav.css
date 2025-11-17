@@ -4,7 +4,7 @@ nav {
   left: 0;
   width: 100%;
   flex-shrink: 0;
-  background-color: var(--bgcolor);
+  background-color: var(--secondbgcolor);
   text-align: center;
   padding: 12px 0;
   color: var(--textcolor);

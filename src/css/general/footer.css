@@ -2,12 +2,11 @@
 
 footer {
     flex-shrink: 0;  
-    background-color: var(--bgcolor);
+    background-color: var(--secondbgcolor);
     text-align: center;
     padding: 12px;
     color: var(--textcolor);
     font-size: 18px;
-    border-top: 1px solid var(--bordercolor);
 }
 footer a {
   color: var(--textcolor);
