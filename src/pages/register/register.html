@@ -7,10 +7,28 @@
     <link rel="stylesheet" href="/src/css/main.css" />
     <link rel="stylesheet" href="/src/css/general/header.css" />
     <link rel="stylesheet" href="/src/css/general/footer.css" />
+    <link rel="stylesheet" href="/src/css/pages/register.css" />
 
-    <script type="module" src="/src/js/supabase/supabaseClient.js" defer></script>
-    <script type="module" src="/src/js/supabase/register/register.js" defer></script>
-    <script type="module" src="/src/js/supabase/register/registerPage.js" defer></script>
+    <script
+      type="module"
+      src="/src/js/supabase/supabaseClient.js"
+      defer
+    ></script>
+    <script
+  type="module"
+  src="/src/js/supabase/register/user_data.js"
+  defer
+></script>
+    <script
+      type="module"
+      src="/src/js/supabase/register/register.js"
+      defer
+    ></script>
+    <script
+      type="module"
+      src="/src/js/supabase/register/registerPage.js"
+      defer
+    ></script>
   </head>
   <body>
     <header>
@@ -22,24 +40,41 @@
       </a>
     </header>
     <main>
-        <div class="register-wrapper">
-            <h1>Registrieren</h1>
-            <form id="register-form">
-                <label for="full-name">Vollständiger Name:</label>
-                <input type="text" id="full-name" name="full-name" required />
+      <div class="register-wrapper">
+        <h1>Registrieren</h1>
 
-                <label for="day-of-birth">Geburtsdatum:</label>
-                <input type="date" id="day-of-birth" name="day-of-birth" required />
+        <!-- 1. Schritt -->
+        <form id="register-form-step1" class="step active">
+          <label for="full-name">Vollständiger Name:</label>
+          <input type="text" id="full-name" name="full-name" required />
 
-                <label for="email">E-Mail:</label>
-                <input type="email" id="email" name="email" required />
+          <label for="day-of-birth">Geburtsdatum:</label>
+          <input type="date" id="day-of-birth" name="day-of-birth" required />
 
-                <label for="password">Passwort:</label>
-                <input type="password" id="password" name="password" required />
+          <label for="email">E-Mail:</label>
+          <input type="email" id="email" name="email" required />
 
-                <button type="submit">Registrieren</button>
-            </form>
-        </div>
+          <label for="password">Passwort:</label>
+          <input type="password" id="password" name="password" required />
+
+          <button type="submit">weiter</button>
+        </form>
+
+        <!-- 2. Schritt -->
+        <form id="register-form-step2" class="step">
+          <label for="height">Aktuelle Größe (cm):</label>
+          <input type="number" id="height-now" name="height-now" required />
+
+          <label for="start-weight">Startgewicht (kg):</label>
+          <input type="number" id="start-weight" name="start-weight" required />
+
+          <label for="target-weight">Zielgewicht (kg):</label>
+          <input type="number" id="target-weight" name="target-weight" required />
+
+          <button type="submit">Registrierung abschließen</button>
+          <button type="button" id="back-button">zurück</button>
+        </form>
+      </div>
     </main>
     <footer>
       <div class="linksection">
