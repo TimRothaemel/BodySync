@@ -9,8 +9,15 @@ header {
     width: 100%;
     border-bottom: 1px solid var(--bordercolor);
 }
-header img {
+header a{
     height: 180%;
     object-fit: contain;
     margin-top: -30px;
+    font-size: 40px;
+    color: var(--highlightcolor);
+    text-decoration: none;
+    font-family: 'Proxima Nova', Arial, sans-serif;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }

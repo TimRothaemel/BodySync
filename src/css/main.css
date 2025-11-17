@@ -13,6 +13,14 @@
     --textcolor: #ffffff;
 }
 
+
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../../assets/fonts/Proxima\ Nova/woff2') format('woff2');
+}
+
+
 html {
     height: 100%;
 }
