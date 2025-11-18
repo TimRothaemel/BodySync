@@ -35,45 +35,68 @@
       <a href="../../../index.html">BodySync
       </a>
     </header>
+
     <main>
-      <div class="register-wrapper">
-        <h1>Registrieren</h1>
-        <p>
-            Speichern Sie Ihre persönlichen Daten, um Ihre Fitness- und
-            Körperdaten zu verfolgen und auszuwerten. <br>     
-            Erstellen Sie ein Konto, um auf alle Funktionen von BodySync zu
-           zugreifen.
-</p>
+  <div class="register-wrapper">
+    <h1>Registrieren</h1>
+    <p>
+      Speichern Sie Ihre persönlichen Daten, um Ihre Fitness- und
+      Körperdaten zu verfolgen und auszuwerten. <br>     
+      Erstellen Sie ein Konto, um auf alle Funktionen von BodySync zu
+      zugreifen.
+    </p>
 
-        <!-- 1. Schritt -->
-        <form id="register-form-step1" class="step active">
-          <input placeholder="Vollständiger Name" type="text" id="full-name" name="full-name" required /><br>
+    <!-- Card Container für Flip-Animation -->
+    <div class="card-container" id="card-container">
+      <!-- 1. Schritt -->
+      <form id="register-form-step1" class="step active">
+        <input placeholder="Vollständiger Name" type="text" id="full-name" name="full-name" required /><br>
+        <input placeholder="Geburtsdatum" type="date" id="day-of-birth" name="day-of-birth" required /><br>
+        <input placeholder="E-Mail" type="email" id="email" name="email" required /><br>
+        <input placeholder="Passwort" type="password" id="password" name="password" required /><br>
+        <div class="form-buttons">
+          <button type="submit" class="primary-button">weiter</button>
+        </div>
+      </form>
 
-          <input placeholder="Geburtsdatum" type="date" id="day-of-birth" name="day-of-birth" required /><br>
+      <!-- 2. Schritt -->
+      <form id="register-form-step2" class="step">
+        <label for="height">Aktuelle Größe (cm):</label>
+        <input type="number" id="height-now" name="height-now" required />
+        <label for="start-weight">Startgewicht (kg):</label>
+        <input type="number" id="start-weight" name="start-weight" required />
+        <label for="target-weight">Zielgewicht (kg):</label>
+        <input type="number" id="target-weight" name="target-weight" required />
+        <div class="form-buttons">
+          <button type="submit" class="primary-button">Registrierung abschließen</button>
+          <button type="button" id="back-button" class="secondary-button">zurück</button>
+        </div>
+      </form>
 
-          <input placeholder="E-Mail" type="email" id="email" name="email" required /><br>
-
-          <input placeholder="Passwort" type="password" id="password" name="password" required /><br>
-
-          <button type="submit">weiter</button>
-        </form>
-
-        <!-- 2. Schritt -->
-        <form id="register-form-step2" class="step">
-          <label for="height">Aktuelle Größe (cm):</label>
-          <input type="number" id="height-now" name="height-now" required />
-
-          <label for="start-weight">Startgewicht (kg):</label>
-          <input type="number" id="start-weight" name="start-weight" required />
-
-          <label for="target-weight">Zielgewicht (kg):</label>
-          <input type="number" id="target-weight" name="target-weight" required />
-
-          <button type="submit">Registrierung abschließen</button>
-          <button type="button" id="back-button">zurück</button>
-        </form>
+      <!-- 3. Schritt - Erfolgsmeldung -->
+      <div id="register-form-step3" class="step success-step">
+        <div class="success-animation">
+          <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        <h2>Registrierung erfolgreich!</h2>
+        <p>Ihr Konto wurde erfolgreich erstellt.</p>
+        <p>Sie werden in Kürze weitergeleitet...</p>
       </div>
-    </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="loading-content">
+        <div class="spinner"></div>
+        <div class="loading-text">Konto wird erstellt...</div>
+      </div>
+    </div>
+  </div>
+</main>
+
     <footer>
       <div class="linksection">
         <a href="/src/pages/police/impressum.html">Impressum</a>

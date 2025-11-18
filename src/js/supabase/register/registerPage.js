@@ -9,17 +9,51 @@ let currentStep = 1
 let formData = {}
 
 function showStep(stepNumber) {
-  // Alle Schritte ausblenden
-  document.querySelectorAll('.step').forEach(step => {
-    step.classList.remove('active')
-  })
+  const cardContainer = document.getElementById('card-container')
   
-  // Gewünschten Schritt anzeigen
-  const stepElement = document.getElementById(`register-form-step${stepNumber}`)
-  if (stepElement) {
-    stepElement.classList.add('active')
+  // Flip-Animation basierend auf aktuellem und nächstem Schritt
+  if (currentStep === 1 && stepNumber === 2) {
+    cardContainer.classList.add('flip-to-step2')
+  } else if (currentStep === 2 && stepNumber === 1) {
+    cardContainer.classList.remove('flip-to-step2')
+  } else if (currentStep === 2 && stepNumber === 3) {
+    cardContainer.classList.add('flip-to-step3')
+  } else if (currentStep === 3 && stepNumber === 2) {
+    cardContainer.classList.remove('flip-to-step3')
   }
+  
   currentStep = stepNumber
+  
+  // Step visibility nach Animation aktualisieren
+  setTimeout(() => {
+    document.querySelectorAll('.step').forEach(step => {
+      step.classList.remove('active')
+    })
+    
+    const stepElement = document.getElementById(`register-form-step${stepNumber}`)
+    if (stepElement) {
+      stepElement.classList.add('active')
+    }
+  }, 400) // Etwas kürzer als die Animation damit es glatt aussieht
+}
+
+function showSuccessStep() {
+  const cardContainer = document.getElementById('card-container')
+  const loadingOverlay = document.getElementById('loading-overlay')
+  
+  // Loading Overlay ausblenden
+  loadingOverlay.classList.remove('active')
+  
+  // Erfolgs-Animation starten
+  cardContainer.classList.add('flip-to-success')
+  
+  // Erfolgs-Schritt anzeigen
+  setTimeout(() => {
+    document.querySelectorAll('.step').forEach(step => {
+      step.classList.remove('active')
+    })
+    document.getElementById('register-form-step3').classList.add('active')
+  }, 400)
 }
 
 function initializeEventListeners() {
@@ -37,7 +71,7 @@ function initializeEventListeners() {
         password: document.getElementById('password').value
       }
       
-      // Zu Schritt 2 wechseln
+      // Zu Schritt 2 wechseln mit Flip-Animation
       showStep(2)
     })
   }
@@ -55,6 +89,10 @@ function initializeEventListeners() {
   if (step2Form) {
     step2Form.addEventListener('submit', async function(e) {
       e.preventDefault()
+      
+      // Loading Overlay anzeigen
+      const loadingOverlay = document.getElementById('loading-overlay')
+      loadingOverlay.classList.add('active')
       
       // Daten aus Schritt 2 sammeln
       const additionalData = {
@@ -98,8 +136,16 @@ function initializeEventListeners() {
               console.log('Profil:', profileResult.profile)
               console.log('User Data:', userDataResult.userData)
               
-              // Weiterleitung oder Erfolgsmeldung
-              window.location.href = '/src/pages/dashboard.html'
+              // Erfolgs-Animation anzeigen
+              setTimeout(() => {
+                showSuccessStep()
+                
+                // Nach 3 Sekunden weiterleiten
+                setTimeout(() => {
+                  window.location.href = '/src/pages/dashboard.html'
+                }, 3000)
+              }, 1000)
+              
             } else {
               throw new Error('User Data konnte nicht erstellt werden: ' + userDataResult.error)
             }
@@ -111,6 +157,7 @@ function initializeEventListeners() {
         }
       } catch (error) {
         console.error('Fehler bei der Registrierung:', error)
+        loadingOverlay.classList.remove('active')
         alert('Registrierung fehlgeschlagen: ' + error.message)
       }
     })

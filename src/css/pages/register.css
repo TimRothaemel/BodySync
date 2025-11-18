@@ -14,44 +14,197 @@
   background-color: #5a6268;
 }
 
+/* In /src/css/pages/register.css */
+
 .register-wrapper {
   max-width: 400px;
   margin: 12px;
   padding: 12px;
   background-color: var(--secondbgcolor);
   border-radius: 8px;
+  perspective: 1200px; /* Erhöht für besseren 3D-Effekt */
 }
-.register-wrapper h1 {
-  text-align: center;
-  margin-bottom: 20px;
-} 
-.register-wrapper p {
-  text-align: center;
-  margin-bottom: 20px;
-  color: var(--textcolor);
+
+.card-container {
+  position: relative;
+  width: 100%;
+  height: 450px; /* Etwas erhöht für alle Schritte */
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.register-wrapper form {
+
+.step {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Schritt 2 ist initial um 180 Grad gedreht */
+#register-form-step2 {
+  transform: rotateY(180deg);
+}
+
+/* Schritt 3 ist initial um 180 Grad gedreht (für den dritten Flip) */
+#register-form-step3 {
+  transform: rotateY(180deg);
+}
+
+/* Flip-Animation Klassen */
+.card-container.flip-to-step2 {
+  transform: rotateY(180deg);
+}
+
+.card-container.flip-to-step3 {
+  transform: rotateY(360deg);
+}
+
+.card-container.flip-to-step1 {
+  transform: rotateY(0deg);
+}
+
+.card-container.flip-to-success {
+  transform: rotateY(540deg); /* Eineinhalb Umdrehungen für den Erfolg */
+}
+
+/* Success Step spezielle Styles */
+.success-step {
   display: flex;
   flex-direction: column;
-} 
-.register-wrapper input {
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-.register-wrapper button {
-  padding: 10px;
+
+.success-step h2 {
+  color: var(--highlightcolor);
+  margin-bottom: 20px;
+}
+
+/* Loading Animation */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-overlay.active {
+  display: flex;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--highlightcolor);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Erfolgs-Häkchen Animation */
+.success-animation {
+  width: 80px;
+  height: 80px;
+  margin: 20px auto;
+}
+
+.checkmark {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #4bb71b;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px #4bb71b;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #4bb71b;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #4bb71b;
+  }
+}
+
+/* Button Styles für bessere UX */
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-buttons button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-button {
   background-color: var(--highlightcolor);
   color: white;
-  border: none;
-  border-radius: 4px;     
-  font-size: 16px;
-  cursor: pointer;
 }
-.register-wrapper button:hover {
 
+.primary-button:hover {
+  background-color: var(--highlightcolor-dark);
+  transform: translateY(-2px);
+}
 
-  background-color: #005bb5;
-} 
+.secondary-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.secondary-button:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
