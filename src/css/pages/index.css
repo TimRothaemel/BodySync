@@ -1,0 +1,240 @@
+/* Karussell Styles */
+.carousel-container {
+  max-width: 800px;
+  margin: 40px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  gap: 20px;
+}
+
+.carousel-card {
+  min-width: 100%;
+  flex-shrink: 0;
+  background: var(--secondbgcolor);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-content h2 {
+  margin-bottom: 20px;
+  color: var(--textcolor);
+  font-size: 1.5em;
+}
+
+/* User Status Styles */
+#user-status {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.login-prompt {
+  background: rgba(0, 126, 229, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--highlightcolor);
+}
+
+.login-btn {
+  background: var(--highlightcolor);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #0066cc;
+}
+
+.user-welcome {
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #333;
+  border-radius: 6px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--highlightcolor);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--highlightcolor);
+}
+
+.stat-label {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+/* Quick Actions */
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: var(--textcolor);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.action-btn span {
+  font-size: 1.2em;
+}
+
+/* Motivation */
+.motivation-content {
+  text-align: center;
+}
+
+.progress-ring {
+  margin: 25px auto;
+}
+
+.progress-ring circle {
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-ring text {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Karussell Navigation */
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.carousel-prev,
+.carousel-next {
+  background: var(--secondbgcolor);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--textcolor);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: var(--highlightcolor);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dot.active {
+  background: var(--highlightcolor);
+  transform: scale(1.2);
+}
+
+/* Card Button */
+.card-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--textcolor);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.card-button:hover {
+  background: var(--highlightcolor);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .carousel-container {
+    margin: 20px 15px;
+  }
+  
+  .carousel-card {
+    padding: 20px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quick-actions {
+    gap: 8px;
+  }
+  
+  .action-btn {
+    padding: 12px;
+  }
+}

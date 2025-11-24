@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="/src/css/general/header.css" />
     <link rel="stylesheet" href="/src/css/general/footer.css" />
     <link rel="stylesheet" href="/src/css/general/nav.css" />
+    <link rel="stylesheet" href="/src/css/pages/index.css" />
 
-    <script type="module" src="/src/js/index.js" defer></script>
+    <script type="module" src="/src/js/main.js" defer></script>
+    <script type="module" src="/src/js/pages/index.js" defer></script>
     <script type="module" src="/src/js/supabase/supabaseClient.js" defer></script>
     <script type="module" src="/src/js/supabase/register/register.js" defer></script>
   </head>
@@ -17,28 +19,112 @@
     <header>
       <a href="index.html">BodySync</a>
     </header>
-    <main>
-      <h1>Willkommen bei BodySync</h1>
-      <p>
-        Ihre App zur Erfassung und Auswertung persönlicher Fitness- und
-        Körperdaten.
-      </p>
-      
-      <!-- MEHR INHALT HINZUFÜGEN -->
-      <div style="height: 1500px; padding: 20px;">
-        <h2>Weitere Inhalte</h2>
-        <p>Dies ist Platzhalter-Content um Scrollen zu ermöglichen.</p>
-        <p>Scrollen Sie nach unten um den Footer zu sehen.</p>
+ <main>
+  <h1>Willkommen bei BodySync</h1>
+  <p>
+    Ihre App zur Erfassung und Auswertung persönlicher Fitness- und
+    Körperdaten.
+  </p>
+
+  <!-- Karussell Container -->
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <!-- Karte 1: Begrüßung/Status -->
+      <div class="carousel-card" id="welcome-card">
+        <div class="card-content">
+          <h2>Ihr Fitness-Fortschritt</h2>
+          <div id="user-status">
+            <!-- Wird durch JavaScript gefüllt -->
+          </div>
+        </div>
       </div>
-    </main>
-    <footer>      
-      <nav>
+
+      <!-- Karte 2: Statistiken -->
+      <div class="carousel-card">
+        <div class="card-content">
+          <h2>Statistiken</h2>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-value">0</span>
+              <span class="stat-label">Trainingstage</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">0</span>
+              <span class="stat-label">Erreichte Ziele</span>
+            </div>
+          </div>
+          <button class="card-button" onclick="showStats()">Details anzeigen</button>
+        </div>
+      </div>
+
+      <!-- Karte 3: Schnellaktionen -->
+      <div class="carousel-card">
+        <div class="card-content">
+          <h2>Schnellaktionen</h2>
+          <div class="quick-actions">
+            <button class="action-btn" onclick="startWorkout()">
+              <span>🏋️</span>
+              Training starten
+            </button>
+            <button class="action-btn" onclick="addMeasurement()">
+              <span>📊</span>
+              Messung erfassen
+            </button>
+            <button class="action-btn" onclick="setGoal()">
+              <span>🎯</span>
+              Ziel setzen
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Karte 4: Motivation -->
+      <div class="carousel-card">
+        <div class="card-content">
+          <h2>Motivation</h2>
+          <div class="motivation-content">
+            <p id="motivation-text">Der beste Zeitpunkt zu beginnen war vorher. Der zweitbeste ist jetzt!</p>
+            <div class="progress-ring">
+              <svg width="100" height="100">
+                <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="8" fill="transparent"></circle>
+                <circle cx="50" cy="50" r="40" stroke="var(--highlightcolor)" stroke-width="8" fill="transparent" 
+                        stroke-dasharray="251.2" stroke-dashoffset="175.84" transform="rotate(-90 50 50)"></circle>
+                <text x="50" y="50" text-anchor="middle" dy="7" fill="white">30%</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Karussell Navigation -->
+    <div class="carousel-nav">
+      <button class="carousel-prev" onclick="moveCarousel(-1)">‹</button>
+      <div class="carousel-dots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+        <span class="dot" onclick="goToSlide(3)"></span>
+      </div>
+      <button class="carousel-next" onclick="moveCarousel(1)">›</button>
+    </div>
+  </div>
+
+  <!-- Weitere Inhalte -->
+  <div style="height: 1500px; padding: 20px;">
+    <h2>Weitere Inhalte</h2>
+    <p>Dies ist Platzhalter-Content um Scrollen zu ermöglichen.</p>
+    <p>Scrollen Sie nach unten um den Footer zu sehen.</p>
+  </div>
+</main>
+          <nav>
         <a href="" class="nav-svg"><img src="/public/svg/bar_chart_4_bars_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Statistics"></a>
         <a href="" class="nav-svg"><img src="/public/svg/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Add"></a>
         <a href="index.html" class="nav-svg"><img src="/public/svg/home_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Home"></a>
         <a href="" class="nav-svg"><img src="/public/svg/boy_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Body"></a>
         <a href="/src/pages/management/user-settings.html" class="nav-svg"><img src="/public/svg/settings_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Settings"></a>
       </nav>
+    <footer>      
       <div class="linksection">
         <a href="/src/pages/pages/police/impressum.html">Impressum</a>
         <a href="/src/pages/datenschutz.html">Datenschutz</a>

@@ -1,21 +1,95 @@
+/* Navigation - Immer sichtbar, fixed am unteren Rand */
 nav {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  flex-shrink: 0;
-  background-color: var(--secondbgcolor);
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  background-color: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(15px);
   text-align: center;
-  padding: 12px 0;
+  padding: 12px 24px;
   color: var(--textcolor);
   font-size: 18px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000; 
-  margin-bottom: 90px;
+  gap: 32px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001; /* Höher als Footer */
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: bottom 0.3s ease-in-out; /* Animation für Position */
 }
-nav a img{
-    height: 30px;
+
+/* Wenn Footer sichtbar ist, Navigation nach oben schieben */
+footer.visible ~ nav {
+  bottom: 120px; /* Höher positionieren wenn Footer sichtbar */
+}
+
+/* Icons Styling */
+nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+nav a img {
+  height: 28px;
+  width: 28px;
+  filter: brightness(0) invert(0.7);
+  transition: all 0.3s ease;
+}
+
+/* Hover-Effekte */
+nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+nav a:hover img {
+  filter: brightness(0) invert(1);
+  transform: scale(1.1);
+}
+
+/* Aktiver Zustand */
+nav a.active {
+  background: rgba(0, 126, 229, 0.15);
+}
+
+nav a.active img {
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(185deg);
+}
+
+/* Klick-Animation */
+nav a:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  nav {
+    bottom: 15px;
+    padding: 10px 20px;
+    gap: 28px;
+    border-radius: 20px;
+  }
+  
+  /* Auf Mobile weniger Abstand benötigt */
+  footer.visible ~ nav {
+    bottom: 100px;
+  }
+  
+  nav a img {
+    height: 24px;
+    width: 24px;
+  }
 }
