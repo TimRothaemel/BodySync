@@ -9,93 +9,143 @@
     <link rel="stylesheet" href="/src/css/general/footer.css" />
     <link rel="stylesheet" href="/src/css/pages/register.css" />
 
-    <script
-      type="module"
-      src="/src/js/supabase/supabaseClient.js"
-      defer
-    ></script>
-    <script
-  type="module"
-  src="/src/js/supabase/register/user_data.js"
-  defer
-></script>
-    <script
-      type="module"
-      src="/src/js/supabase/register/register.js"
-      defer
-    ></script>
-    <script
-      type="module"
-      src="/src/js/supabase/register/registerPage.js"
-      defer
-    ></script>
+    <script type="module" src="/src/js/supabase/supabaseClient.js" defer></script>
+    <script type="module" src="/src/js/supabase/register/user_data.js" defer></script>
+    <script type="module" src="/src/js/supabase/register/register.js" defer></script>
+    <script type="module" src="/src/js/supabase/register/registerPage.js" defer></script>
   </head>
   <body>
     <header>
-      <a href="../../../index.html">BodySync
-      </a>
+      <a href="../../../index.html">BodySync</a>
     </header>
 
     <main>
-  <div class="register-wrapper">
-    <h1>Registrieren</h1>
-    <p>
-      Speichern Sie Ihre persönlichen Daten, um Ihre Fitness- und
-      Körperdaten zu verfolgen und auszuwerten. <br>     
-      Erstellen Sie ein Konto, um auf alle Funktionen von BodySync zu
-      zugreifen.
-    </p>
+      <div class="register-wrapper">
+        <h1>Registrieren</h1>
 
-    <!-- Card Container für Flip-Animation -->
-    <div class="card-container" id="card-container">
-      <!-- 1. Schritt -->
-      <form id="register-form-step1" class="step active">
-        <input placeholder="Vollständiger Name" type="text" id="full-name" name="full-name" required /><br>
-        <input placeholder="Geburtsdatum" type="date" id="day-of-birth" name="day-of-birth" required /><br>
-        <input placeholder="E-Mail" type="email" id="email" name="email" required /><br>
-        <input placeholder="Passwort" type="password" id="password" name="password" required /><br>
-        <div class="form-buttons">
-          <button type="submit" class="primary-button">weiter</button>
-        </div>
-      </form>
+        <!-- Card Container für Flip-Animation -->
+        <div class="card-container" id="card-container">
+          <!-- 1. Schritt -->
+          <form id="register-form-step1" class="step active">
+            <input placeholder="Vollständiger Name" type="text" id="full-name" name="full-name" required /><br>
+            <input placeholder="Geburtsdatum" type="date" id="day-of-birth" name="day-of-birth" required /><br>
+            <input placeholder="E-Mail" type="email" id="email" name="email" required /><br>
+            <input placeholder="Passwort" type="password" id="password" name="password" required /><br>
+            <div class="form-buttons">
+              <button type="submit" class="primary-button">weiter</button>
+            </div>
+          </form>
 
-      <!-- 2. Schritt -->
-      <form id="register-form-step2" class="step">
-        <label for="height">Aktuelle Größe (cm):</label>
-        <input type="number" id="height-now" name="height-now" required />
-        <label for="start-weight">Startgewicht (kg):</label>
-        <input type="number" id="start-weight" name="start-weight" required />
-        <label for="target-weight">Zielgewicht (kg):</label>
-        <input type="number" id="target-weight" name="target-weight" required />
-        <div class="form-buttons">
-          <button type="submit" class="primary-button">Registrierung abschließen</button>
-          <button type="button" id="back-button" class="secondary-button">zurück</button>
-        </div>
-      </form>
+          <!-- 2. Schritt -->
+          <form id="register-form-step2" class="step">
+            <label for="height">Aktuelle Größe (cm):</label>
+            <input type="number" id="height-now" name="height-now" required />
+            <label for="start-weight">Startgewicht (kg):</label>
+            <input type="number" id="start-weight" name="start-weight" required />
+            <label for="target-weight">Zielgewicht (kg):</label>
+            <input type="number" id="target-weight" name="target-weight" required />
+            <div class="form-buttons">
+              <button type="submit" class="primary-button">weiter</button>
+              <button type="button" id="back-button-step2" class="secondary-button">zurück</button>
+            </div>
+          </form>
 
-      <!-- 3. Schritt - Erfolgsmeldung -->
-      <div id="register-form-step3" class="step success-step">
-        <div class="success-animation">
-          <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-          </svg>
+          <!-- 3. Schritt - Einstellungen -->
+          <form id="register-form-step3" class="step">
+            <h3>Wie oft möchten Sie Daten eintragen?</h3>
+            <div class="slider-container">
+              <div class="slider-labels">
+                <span>Wöchentlich</span>
+                <span>Täglich</span>
+                <span>Mehrmals täglich</span>
+              </div>
+              <input type="range" id="data-frequency" min="1" max="3" value="2" class="frequency-slider">
+              <div class="slider-ticks">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <div class="notification-settings">
+              <h3>Benachrichtigungen</h3>
+              <label class="checkbox-label">
+                <input type="checkbox" id="push-notifications" checked>
+                <span class="checkmark"></span>
+                Push-Benachrichtigungen erhalten
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="email-notifications" checked>
+                <span class="checkmark"></span>
+                E-Mail-Benachrichtigungen erhalten
+              </label>
+            </div>
+
+            <div class="form-buttons">
+              <button type="submit" class="primary-button">weiter</button>
+              <button type="button" id="back-button-step3" class="secondary-button">zurück</button>
+            </div>
+          </form>
+
+          <!-- 4. Schritt - Zusammenfassung -->
+          <form id="register-form-step4" class="step">
+            <h3>Zusammenfassung</h3>
+            <div class="summary-content">
+              <div class="summary-item">
+                <strong>Name:</strong>
+                <span id="summary-name"></span>
+              </div>
+              <div class="summary-item">
+                <strong>Größe:</strong>
+                <span id="summary-height"></span> cm
+              </div>
+              <div class="summary-item">
+                <strong>Startgewicht:</strong>
+                <span id="summary-start-weight"></span> kg
+              </div>
+              <div class="summary-item">
+                <strong>Zielgewicht:</strong>
+                <span id="summary-target-weight"></span> kg
+              </div>
+              <div class="summary-item">
+                <strong>Dateneingabe:</strong>
+                <span id="summary-frequency"></span>
+              </div>
+              <div class="summary-item">
+                <strong>Benachrichtigungen:</strong>
+                <span id="summary-notifications"></span>
+              </div>
+            </div>
+
+            <div class="form-buttons">
+              <button type="submit" class="primary-button">Registrierung abschließen</button>
+              <button type="button" id="back-button-step4" class="secondary-button">zurück</button>
+            </div>
+          </form>
+
+          <!-- 5. Schritt - Erfolgsmeldung -->
+          <div id="register-form-step5" class="step success-step">
+            <div class="success-animation">
+              <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+              </svg>
+            </div>
+            <h2>Registrierung erfolgreich!</h2>
+            <p>Ihr Konto wurde erfolgreich erstellt.</p>
+            <p>Sie werden in Kürze weitergeleitet...</p>
+          </div>
         </div>
-        <h2>Registrierung erfolgreich!</h2>
-        <p>Ihr Konto wurde erfolgreich erstellt.</p>
-        <p>Sie werden in Kürze weitergeleitet...</p>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+          <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">Konto wird erstellt...</div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Loading Overlay -->
-    <div id="loading-overlay" class="loading-overlay">
-      <div class="loading-content">
-        <div class="spinner"></div>
-        <div class="loading-text">Konto wird erstellt...</div>
-      </div>
-    </div>
-  </div>
-</main>
+    </main>
 
     <footer>
       <div class="linksection">

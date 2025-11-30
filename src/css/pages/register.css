@@ -1,36 +1,17 @@
-.step {
-  display: none;
-}
-
-.step.active {
-  display: block;
-}
-
-#back-button {
-  background-color: #6c757d;
-}
-
-#back-button:hover {
-  background-color: #5a6268;
-}
-
-/* In /src/css/pages/register.css */
-
+/* Register Container - ähnlich wie Karussell auf Index */
 .register-wrapper {
   max-width: 400px;
-  margin: 12px;
-  padding: 12px;
-  background-color: var(--secondbgcolor);
-  border-radius: 8px;
-  perspective: 1200px; /* Erhöht für besseren 3D-Effekt */
+  margin: 20px auto;
+  padding: 20px;
+  perspective: 1200px;
 }
 
 .card-container {
   position: relative;
   width: 100%;
-  height: 450px; /* Etwas erhöht für alle Schritte */
+  height: 480px;
   transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .step {
@@ -38,89 +19,307 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  transform-style: preserve-3d;
-  padding: 20px;
+  padding: 25px;
+  background: var(--secondbgcolor);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+/* Initial Rotationen für Flip-Effekt */
+#register-form-step1 { transform: rotateY(0deg); }
+#register-form-step2 { transform: rotateY(180deg); }
+#register-form-step3 { transform: rotateY(180deg); }
+#register-form-step4 { transform: rotateY(180deg); }
+#register-form-step5 { transform: rotateY(180deg); }
+
+/* Flip Animationen */
+.card-container.flip-to-step2 { transform: rotateY(180deg); }
+.card-container.flip-to-step3 { transform: rotateY(360deg); }
+.card-container.flip-to-step4 { transform: rotateY(540deg); }
+.card-container.flip-to-success { transform: rotateY(720deg); }
+
+/* Rückwärts Animationen */
+.card-container.flip-to-step1-back { transform: rotateY(0deg); }
+.card-container.flip-to-step2-back { transform: rotateY(180deg); }
+.card-container.flip-to-step3-back { transform: rotateY(360deg); }
+
+/* Input Field Styling - Konsistent mit Index */
+.step input[type="text"],
+.step input[type="email"],
+.step input[type="password"],
+.step input[type="date"],
+.step input[type="number"] {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 10px 0;
+  background: var(--backgroundcolor);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--textcolor);
+  font-size: 16px;
+  transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
-/* Schritt 2 ist initial um 180 Grad gedreht */
-#register-form-step2 {
-  transform: rotateY(180deg);
+.step input:focus {
+  outline: none;
+  border-color: var(--highlightcolor);
+  box-shadow: 0 0 0 3px rgba(var(--highlightcolor-rgb), 0.1);
+  transform: translateY(-2px);
 }
 
-/* Schritt 3 ist initial um 180 Grad gedreht (für den dritten Flip) */
-#register-form-step3 {
-  transform: rotateY(180deg);
+.step input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
-/* Flip-Animation Klassen */
-.card-container.flip-to-step2 {
-  transform: rotateY(180deg);
+/* Labels Styling */
+.step label {
+  display: block;
+  margin: 15px 0 8px 0;
+  color: var(--textcolor);
+  font-weight: 500;
+  font-size: 14px;
 }
 
-.card-container.flip-to-step3 {
-  transform: rotateY(360deg);
+/* Slider Styling - Modern und konsistent */
+.slider-container {
+  margin: 25px 0;
+  padding: 0 5px;
 }
 
-.card-container.flip-to-step1 {
-  transform: rotateY(0deg);
+.frequency-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--backgroundcolor) 0%, var(--highlightcolor) 100%);
+  outline: none;
+  -webkit-appearance: none;
+  transition: all 0.3s ease;
 }
 
-.card-container.flip-to-success {
-  transform: rotateY(540deg); /* Eineinhalb Umdrehungen für den Erfolg */
+.frequency-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--highlightcolor);
+  cursor: pointer;
+  border: 3px solid var(--backgroundcolor);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
-/* Success Step spezielle Styles */
+.frequency-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(var(--highlightcolor-rgb), 0.4);
+}
+
+.frequency-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--highlightcolor);
+  cursor: pointer;
+  border: 3px solid var(--backgroundcolor);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0 8px 0;
+  font-size: 0.75em;
+  color: var(--textcolor);
+  opacity: 0.8;
+}
+
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 0 10px;
+}
+
+.slider-ticks span {
+  width: 6px;
+  height: 6px;
+  background: var(--highlightcolor);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* Notification Settings */
+.notification-settings {
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification-settings h3 {
+  margin-bottom: 20px;
+  color: var(--textcolor);
+  font-size: 1.1em;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin: 18px 0;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.checkbox-label:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(5px);
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--highlightcolor);
+  border-radius: 5px;
+  margin-right: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+  background: var(--highlightcolor);
+  transform: scale(1.1);
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+  content: "✓";
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Summary Styling */
+.summary-content {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.summary-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px;
+  border-radius: 6px;
+  transform: translateX(5px);
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+/* Button Styles - Wie Index Seite */
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.form-buttons button {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.primary-button {
+  background: var(--highlightcolor);
+  color: white;
+  box-shadow: 0 4px 15px rgba(var(--highlightcolor-rgb), 0.3);
+}
+
+.primary-button:hover {
+  background: var(--highlightcolor-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(var(--highlightcolor-rgb), 0.4);
+}
+
+.primary-button:active {
+  transform: translateY(-1px);
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--textcolor);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.secondary-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Success Step */
 .success-step {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  background: linear-gradient(135deg, var(--secondbgcolor) 0%, rgba(var(--highlightcolor-rgb), 0.1) 100%);
 }
 
 .success-step h2 {
   color: var(--highlightcolor);
-  margin-bottom: 20px;
+  margin: 20px 0 10px 0;
+  font-size: 1.8em;
 }
 
-/* Loading Animation */
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+.success-step p {
+  color: var(--textcolor);
+  opacity: 0.8;
+  margin: 5px 0;
 }
 
-.loading-overlay.active {
-  display: flex;
-}
-
-.spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid var(--highlightcolor);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Erfolgs-Häkchen Animation */
+/* Success Animation */
 .success-animation {
   width: 80px;
   height: 80px;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .checkmark {
@@ -129,9 +328,9 @@
   border-radius: 50%;
   display: block;
   stroke-width: 2;
-  stroke: #4bb71b;
+  stroke: var(--highlightcolor);
   stroke-miterlimit: 10;
-  box-shadow: inset 0px 0px 0px #4bb71b;
+  box-shadow: inset 0px 0px 0px var(--highlightcolor);
   animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
 
@@ -140,7 +339,7 @@
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
-  stroke: #4bb71b;
+  stroke: var(--highlightcolor);
   fill: none;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
@@ -153,58 +352,224 @@
 }
 
 @keyframes stroke {
-  100% {
-    stroke-dashoffset: 0;
-  }
+  100% { stroke-dashoffset: 0; }
 }
 
 @keyframes scale {
-  0%, 100% {
-    transform: none;
-  }
-  50% {
-    transform: scale3d(1.1, 1.1, 1);
-  }
+  0%, 100% { transform: none; }
+  50% { transform: scale3d(1.1, 1.1, 1); }
 }
 
 @keyframes fill {
-  100% {
-    box-shadow: inset 0px 0px 0px 30px #4bb71b;
+  100% { box-shadow: inset 0px 0px 0px 30px var(--highlightcolor); }
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.loading-overlay.active {
+  display: flex;
+}
+
+.loading-content {
+  text-align: center;
+  background: var(--secondbgcolor);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid var(--highlightcolor);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: var(--textcolor);
+  font-size: 1.1em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .register-wrapper {
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .card-container {
+    height: 520px;
+  }
+  
+  .step {
+    padding: 20px;
+  }
+  
+  .slider-labels {
+    font-size: 0.7em;
+  }
+  
+  .summary-item {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+  }
+  
+  .notification-settings {
+    padding: 15px;
   }
 }
 
-/* Button Styles für bessere UX */
-.form-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
+/* Scrollbar Styling */
+.step {
+  overflow-y: auto;
+  max-height: 100%;
 }
 
-.form-buttons button {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.step::-webkit-scrollbar {
+  width: 6px;
 }
 
-.primary-button {
-  background-color: var(--highlightcolor);
-  color: white;
+.step::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
 }
 
-.primary-button:hover {
-  background-color: var(--highlightcolor-dark);
-  transform: translateY(-2px);
+.step::-webkit-scrollbar-thumb {
+  background: var(--highlightcolor);
+  border-radius: 3px;
 }
 
-.secondary-button {
-  background-color: #6c757d;
-  color: white;
+/* Headings in Steps */
+.step h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--textcolor);
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 600;
 }
 
-.secondary-button:hover {
-  background-color: #5a6268;
-  transform: translateY(-2px);
+/* Placeholder Styling für bessere Lesbarkeit */
+.step input::placeholder {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.step input:focus::placeholder {
+  opacity: 0.3;
+}
+
+/* Loading Overlay Verbesserungen */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.loading-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.loading-content {
+    text-align: center;
+    background: var(--secondbgcolor);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 200px;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--highlightcolor);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+.loading-text {
+    color: var(--textcolor);
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+/* Button Loading State */
+.primary-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.primary-button:disabled:hover {
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(var(--highlightcolor-rgb), 0.3) !important;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Progress Bar für besseres Loading-Feedback */
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--highlightcolor);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s ease;
+    animation: loadingProgress 2s ease-in-out infinite;
+}
+
+@keyframes loadingProgress {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
 }
